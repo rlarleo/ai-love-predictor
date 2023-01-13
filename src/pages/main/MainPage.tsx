@@ -1,29 +1,30 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
+import TabPanel from '@components/tab/LovingTabPanel';
+import LovingTab from '@components/tab/LovingTab';
+import LovingTabs from '@components/tab/LovingTabs';
 
 const RootPage = () => {
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Item One" value="1" />
-            <Tab label="Item Two" value="2" />
-            <Tab label="Item Three" value="3" />
-          </TabList>
-        </Box>
-        <TabPanel value="1">Item One</TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-      </TabContext>
+      <Box sx={{ width: '90%' }}>
+        <LovingTabs value={value} onChange={handleChange}>
+          <LovingTab label="Item One" />
+          <LovingTab label="Item Two" />
+        </LovingTabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+        Item One
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
     </Box>
   );
 };

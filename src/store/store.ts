@@ -8,7 +8,6 @@ import storage from 'redux-persist/lib/storage';
 
 import { userReducer } from './user/user.slice';
 import { loginReducer } from './login/login.slice';
-import { todoReducer } from './todo/todo.slice';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +17,6 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   login: loginReducer,
-  todo: todoReducer,
 });
 
 export const store = configureStore({
