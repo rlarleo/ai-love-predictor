@@ -1,6 +1,9 @@
-from fastapi import FastAPI
-from pydantic import  BaseModel
+
+from fastapi import FastAPI, WebSocket
+from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import test_test
 
 origins = ["*"]
 
@@ -22,13 +25,13 @@ app.add_middleware(
 class Model(BaseModel):
     name: str
     sex: str
-    
 
-@app.get("/")
+@app.get("/test")
 def test():
-    return 'hello'
-
+    print(test_test.test2())
+    print('hi')
+    return 'hello test'
 
 @app.post("/")
 def test(data: Model):
-    return 'hello'
+    return 'hello2'

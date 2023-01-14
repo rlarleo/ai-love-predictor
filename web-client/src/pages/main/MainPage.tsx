@@ -9,6 +9,7 @@ const RootPage = () => {
   const [value, setValue] = React.useState(0);
   const { currentData: test } = useGetTestQuery();
   console.log(test);
+  console.log('nono');
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

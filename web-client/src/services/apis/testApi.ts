@@ -5,7 +5,7 @@ const testApi = api.injectEndpoints({
   endpoints: builder => ({
     getTest: builder.query<any, void>({
       query: () => ({
-        url: '/',
+        url: '/test',
         method: 'GET',
       }),
       transformResponse: (res: any) => res,
