@@ -7,8 +7,11 @@ import Link from '@mui/joy/Link';
 import { useNavigate } from 'react-router-dom';
 import Alert from '@mui/joy/Alert';
 import Container from '@components/layout/Container';
-import { selectUsers } from '@store/user/user.slice';
-import { selectLoggedState, loginAccount } from '@store/login/login.slice';
+import { selectUsers } from 'src/core/store/user/user.slice';
+import {
+  selectLoggedState,
+  loginAccount,
+} from 'src/core/store/login/login.slice';
 
 const Login = () => {
   const navigate = useNavigate();

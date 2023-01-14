@@ -6,6 +6,7 @@ import {
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import { api } from '@services/apis/api';
 import { userReducer } from './user/user.slice';
 import { loginReducer } from './login/login.slice';
 
@@ -15,6 +16,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  [api.reducerPath]: api.reducer,
   user: userReducer,
   login: loginReducer,
 });
@@ -23,10 +25,7 @@ export const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
   middleware: getDefaultMiddleware({
     serializableCheck: false,
-  }),
+  }).concat(api.middleware),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;

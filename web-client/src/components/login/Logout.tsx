@@ -4,7 +4,10 @@ import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import { useNavigate } from 'react-router-dom';
 import Container from '@components/layout/Container';
-import { selectLoggedState, logoutAccount } from '@store/login/login.slice';
+import {
+  selectLoggedState,
+  logoutAccount,
+} from 'src/core/store/login/login.slice';
 
 const LogoutPage = () => {
   const navigate = useNavigate();

@@ -3,9 +3,12 @@ import { Box, Tab, Tabs, Typography } from '@mui/material';
 import TabPanel from '@components/tab/LovingTabPanel';
 import LovingTab from '@components/tab/LovingTab';
 import LovingTabs from '@components/tab/LovingTabs';
+import { useGetTestQuery } from '@services/apis/testApi';
 
 const RootPage = () => {
   const [value, setValue] = React.useState(0);
+  const { currentData: test } = useGetTestQuery();
+  console.log(test);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

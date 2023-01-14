@@ -7,7 +7,8 @@
       "@services/*": ["src/services/*"],
       "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
-      "@store/*": ["src/store/*"],
+      "@store/*": ["src/core/store/*"],
+      "@core/*": ["src/core/*"],
       "@data/*": ["src/data/*"]
     }
   }
