@@ -14,20 +14,24 @@ class CustomModel(nn.Module):
         x = self.layer(x)
         return x
         
-def test2(): 
-    currentPath = os.getcwd() #+ "/api-server"
+def getProbability(parameter): 
+    currentPath = os.getcwd() # + "/api-server"
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = torch.load(currentPath + "/model/model.pt", map_location=device)
+    model = CustomModel().to(device)
+
+    model_state_dict = torch.load(currentPath + "/model/model_state_dict.pt", map_location=device)
+    model.load_state_dict(model_state_dict)
 
     with torch.no_grad():
         model.eval()
         inputs = torch.FloatTensor(
-            [89, 92, 75]
+            parameter
         ).to(device)
         outputs = model(inputs)
 
-        print("---------")
-        print(outputs)
-        print(outputs >= torch.FloatTensor([0.5]).to(device))
-        return outputs
+        # print("---------")
+        # print(outputs)
+        # print(outputs >= torch.FloatTensor([0.5]).to(device))
+    
+    return float(str(outputs)[8:12])*100

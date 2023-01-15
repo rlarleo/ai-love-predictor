@@ -67,3 +67,15 @@ for epoch in range(10000):
 
 
 torch.save(model, currentPath + '/model/model.pt')  # 전체 모델 저장
+torch.save(model.state_dict(), currentPath + '/model/model_state_dict.pt')  # 전체 모델 저장
+
+with torch.no_grad():
+    model.eval()
+    inputs = torch.FloatTensor(
+        [89, 92, 75]
+    ).to(device)
+    outputs = model(inputs)
+
+    print("---------")
+    print(outputs)
+    print(outputs >= torch.FloatTensor([0.5]).to(device))
