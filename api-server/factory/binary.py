@@ -12,6 +12,7 @@ class CustomDataset(Dataset):
         self.x2 = df.iloc[:, 1].values
         self.x3 = df.iloc[:, 2].values
         self.y = df.iloc[:, 3].values
+
         self.length = len(df)
 
     def __getitem__(self, index):
@@ -35,8 +36,8 @@ class CustomModel(nn.Module):
         x = self.layer(x)
         return x
 
-currentPath = os.getcwd() + "/api-server"
-train_dataset = CustomDataset(currentPath + "/create/data.csv")
+currentPath = os.getcwd() + "/ai-love-predictor/api-server"
+train_dataset = CustomDataset(currentPath + "/factory/data.csv")
 train_dataloader = DataLoader(train_dataset, batch_size=128, shuffle=True, drop_last=True)
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
