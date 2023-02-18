@@ -7,7 +7,7 @@ on:
 
 # 환경설정
 env:
-  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/ai-love-predictor
+  DOCKER_IMAGE: ghcr.io/rlarleo/ai-love-predictor
   VERSION: ${{ github.sha }}
   NAME: go_cicd
 
