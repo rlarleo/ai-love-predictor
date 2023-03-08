@@ -1,46 +1,32 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
-import { useLazyGetTestQuery } from '@services/apis/testApi';
 import { isGeneratorFunction } from 'util/types';
+import { motion } from 'framer-motion';
 
-const RootPage = () => {
-  const [value1, setValue1] = useState(0);
-  const [value2, setValue2] = useState(0);
-  const [value3, setValue3] = useState(0);
-  const [trigger, { currentData: test }] = useLazyGetTestQuery();
+const INITIAL_TIME = new Date().toLocaleTimeString().slice(0, -3);
 
-  const handleClick = () => {
-    trigger({ param: [value1, value2, value3] });
-  };
+const MainPage = () => {
+  const CURRENT_TIME = new Date().toLocaleTimeString().slice(0, -3);
+
+  const [myMessage, setMyMessage] = useState<
+    {
+      content: string;
+      delay: number;
+      time: string;
+    }[]
+  >([]);
 
   return (
-    <Box sx={{ width: '100%', typography: 'body1' }}>
-      <Box sx={{ width: '90%', pt: 10 }}>
-        <TextField
-          id="1"
-          type="number"
-          value={value1}
-          onChange={e => setValue1(Number(e.target.value))}
-        />
-        <TextField
-          id="2"
-          type="number"
-          value={value2}
-          onChange={e => setValue2(Number(e.target.value))}
-        />
-        <TextField
-          id="3"
-          type="number"
-          value={value3}
-          onChange={e => setValue3(Number(e.target.value))}
-        />
-        <Button variant="contained" onClick={handleClick}>
-          Contained
-        </Button>
-        <div>{test}</div>
-      </Box>
-    </Box>
+    <div className="flex flex-col h-full w-full items-center text-white">
+      {/* <span className="text-4xl">너는 솔로?</span>
+      <span>그것이 알고싶다</span>
+      <span>인공지능이 알려주는 내가 연애할 확률은?</span>
+      <button type="button" className="">
+        확률 알아보기
+      </button>
+      <span>그것이 알고싶다</span> */}
+    </div>
   );
 };
 
-export default RootPage;
+export default MainPage;
