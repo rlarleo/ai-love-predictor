@@ -20,6 +20,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'import/no-cycle': 'off',
+    'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
