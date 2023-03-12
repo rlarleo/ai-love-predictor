@@ -3,8 +3,8 @@ from sklearn import tree, preprocessing
 from sklearn.metrics import accuracy_score
 import graphviz
 
-train_df = pd.read_csv('./api-server/factory/district_dict_list.csv')
-test_df = pd.read_csv('./api-server/factory/dong_dict_list.csv')
+train_df = pd.read_csv('./api-server/factory/train_list.csv')
+test_df = pd.read_csv('./api-server/factory/test_list.csv')
 
 print(train_df.label.value_counts())
 print(test_df.label.value_counts())
