@@ -1,23 +1,33 @@
+import PlusIcon from '@components/icon/PlusIcon';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const PlusIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="36"
-      height="36"
-      viewBox="0 0 36 36"
-      fill="none"
-    >
-      <path
-        d="M35.5 20.5H20.5V35.5H15.5V20.5H0.5V15.5H15.5V0.5H20.5V15.5H35.5V20.5Z"
-        fill="white"
-      />
-    </svg>
-  );
-};
 const UploadProfilePage = () => {
   const navigate = useNavigate();
+  const [image, setImage] = useState<File | null>(null);
+  const [createObjectURL, setCreateObjectURL] = useState<string | null>(null);
+
+  const uploadToClient = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+
+      setImage(file);
+      setCreateObjectURL(URL.createObjectURL(file));
+    }
+  };
+
+  const deleteOnClient = () => {
+    setImage(null);
+    setCreateObjectURL(null);
+  };
+
+  const uploadToServer = async () => {
+    if (!image) return;
+
+    const body = new FormData();
+    body.append('file', image);
+    navigate('/chatting');
+  };
 
   return (
     <div className="flex w-full py-20 flex-col h-full shadow-lg  items-center gap-12">
@@ -27,16 +37,45 @@ const UploadProfilePage = () => {
       </span>
       <div className="flex-auto" />{' '}
       <div className="w-full px-12">
+        {createObjectURL ? (
+          <img src={createObjectURL} alt="profile" className="mx-auto" />
+        ) : (
+          <label
+            htmlFor="profile"
+            className="flex items-center cursor-pointer justify-center w-full h-56 border-white border-2 border-dashed"
+          >
+            <input
+              type="file"
+              id="profile"
+              className="hidden"
+              accept="image/*"
+              onChange={uploadToClient}
+            />
+            <PlusIcon />
+          </label>
+        )}
+      </div>
+      {image ? (
         <button
-          className="flex items-center justify-center w-full h-56 border-white border-2 border-dashed"
           type="button"
+          className="bg-pink-regular rounded-2xl font-semibold px-12 py-4 text-[22px] flex"
+          onClick={() => {
+            uploadToServer();
+          }}
+        >
+          다음으로
+        </button>
+      ) : (
+        <button
+          type="button"
+          className=""
           onClick={() => {
             navigate('/chatting');
           }}
         >
-          <PlusIcon />
+          건너뛰기
         </button>
-      </div>
+      )}
       <div className="flex-[2]" />
     </div>
   );

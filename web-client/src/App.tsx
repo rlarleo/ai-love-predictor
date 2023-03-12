@@ -4,7 +4,7 @@ import SelectGenderPage from '@pages/select-gender/SelectGenderPage';
 import UploadProfilePage from '@pages/upload-profile/UploadProfilePage';
 import ChattingPage from '@pages/chatting/ChattingPage';
 import ResultPage from '@pages/result/ResultPage';
-import MainPage from './pages/main/MainPage';
+import MainPage from '@pages/main/MainPage';
 
 const App = () => {
   return (

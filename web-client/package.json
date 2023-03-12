@@ -16,6 +16,7 @@
     "@types/react-dom": "^18.0.9",
     "craco-alias": "^3.0.1",
     "framer-motion": "^9.0.2",
+    "jotai": "^2.0.3",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",

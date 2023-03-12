@@ -1,9 +1,10 @@
-import React from 'react';
+import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
+import { genderAtom } from '@core/jotai/atoms';
 
 const SelectGenderPage = () => {
   const navigate = useNavigate();
-
+  const [gender, setGender] = useAtom(genderAtom);
   return (
     <div className="flex w-full py-20 flex-col h-full shadow-lg  items-center gap-12">
       <span className="sm:text-[24px] font-semibold text-center">
@@ -15,6 +16,7 @@ const SelectGenderPage = () => {
           className="bg-green-regular rounded-2xl font-semibold w-[380px] h-[84px] text-[26px] flex items-center justify-center gap-2"
           type="button"
           onClick={() => {
+            setGender('MALE');
             navigate('/upload-profile');
           }}
         >
@@ -24,6 +26,8 @@ const SelectGenderPage = () => {
           className="bg-pink-regular rounded-2xl w-[380px] font-semibold h-[84px] text-[26px] flex items-center justify-center gap-2"
           type="button"
           onClick={() => {
+            setGender('FEMALE');
+
             navigate('/upload-profile');
           }}
         >

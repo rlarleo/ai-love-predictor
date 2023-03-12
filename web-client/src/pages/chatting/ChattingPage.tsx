@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useAtomValue } from 'jotai';
+import { genderAtom } from '@core/jotai/atoms';
 
 const today = new Date();
 const todayYear = today.getFullYear();
@@ -19,7 +21,7 @@ const INITIAL_TIME = today.toLocaleTimeString().slice(0, -3);
 
 const ChattingPage = () => {
   const CURRENT_TIME = new Date().toLocaleTimeString().slice(0, -3);
-
+  const gender = useAtomValue(genderAtom);
   const [myMessage, setMyMessage] = useState<
     {
       content: string;
@@ -37,16 +39,16 @@ const ChattingPage = () => {
         <div className="flex gap-4">
           <div className="rounded-xl w-12 h-12 bg-white" />
           <div className="flex flex-col items-start">
-            <span className="my-1 ">상대 이름</span>
+            <span className="my-1 ">{gender === 'MALE' ? '옥순' : '영철'}</span>
             {[
               { content: '메세지 01', delay: 0, time: INITIAL_TIME },
               { content: '메세지 02', delay: 1, time: INITIAL_TIME },
               { content: '메세지 03', delay: 2, time: INITIAL_TIME },
             ].map(message => (
               <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: message.delay }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0, delay: message.delay }}
                 className="flex gap-2 items-end mb-4"
               >
                 <div className="self-start bg-gray-regular  rounded-sm px-2 shadow-md py-1">
