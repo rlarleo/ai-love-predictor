@@ -24,6 +24,5 @@ pred = clf.predict(X_test)
 y_test_encoded = le.transform(y_test)
 print("accuracy :", accuracy_score(y_test_encoded, pred))
 
-# comparison = pd.DataFrame({'prediction':le.inverse_transform(pred), 'ground_truth':y_test}) 
 comparison = pd.DataFrame({'prediction':le.inverse_transform(pred), 'ground_truth':le.inverse_transform(y_test_encoded)}) 
 print(comparison)
