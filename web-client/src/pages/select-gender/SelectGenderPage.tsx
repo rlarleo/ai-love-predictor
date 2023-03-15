@@ -1,37 +1,50 @@
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
-import { genderAtom } from '@core/jotai/atoms';
+import { genderAtom, progressBarAtom } from '@core/jotai/atoms';
+import Woman from '@components/SVG/Woman';
+import Man from '@components/SVG/Man';
+import { useEffect } from 'react';
 
 const SelectGenderPage = () => {
   const navigate = useNavigate();
-  const [gender, setGender] = useAtom(genderAtom);
+  const [, setGender] = useAtom(genderAtom);
+  const [, setProgress] = useAtom(progressBarAtom);
+  useEffect(() => {
+    setProgress(12.5);
+  }, []);
+
   return (
-    <div className="flex w-full py-20 flex-col h-full shadow-lg  items-center gap-12">
+    <div className="flex flex-col items-center w-full h-full gap-12 py-20 shadow-lg">
       <span className="sm:text-[24px] font-semibold text-center">
         연애하고 싶은 상대의 성별을 <br /> 선택해주세요.
       </span>
       <div className="flex-auto" />{' '}
       <div className="flex w-full gap-5 px-12">
         <button
-          className="bg-green-regular rounded-2xl font-semibold w-[380px] h-[84px] text-[26px] flex items-center justify-center gap-2"
+          className="flex flex-col w-[380px] items-center gap-5"
           type="button"
           onClick={() => {
             setGender('MALE');
             navigate('/upload-profile');
           }}
         >
-          남자
+          <Man />
+          <div className="bg-green-regular rounded-2xl font-semibold w-full h-[84px] text-[26px] flex items-center justify-center gap-2">
+            남자
+          </div>
         </button>
         <button
-          className="bg-pink-regular rounded-2xl w-[380px] font-semibold h-[84px] text-[26px] flex items-center justify-center gap-2"
+          className="flex flex-col w-[380px] items-center gap-5"
           type="button"
           onClick={() => {
             setGender('FEMALE');
-
             navigate('/upload-profile');
           }}
         >
-          여자
+          <Woman />
+          <div className="bg-pink-regular rounded-2xl w-full font-semibold h-[84px] text-[26px] flex items-center justify-center gap-2">
+            여자
+          </div>
         </button>
       </div>
       <div className="flex-[2]" />

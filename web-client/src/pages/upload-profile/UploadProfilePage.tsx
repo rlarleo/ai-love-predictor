@@ -1,11 +1,19 @@
-import PlusIcon from '@components/icon/PlusIcon';
-import { ChangeEvent, useState } from 'react';
+import PlusIcon from '@components/SVG/PlusIcon';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAtom } from 'jotai';
+import { progressBarAtom } from '@core/jotai/atoms';
 
 const UploadProfilePage = () => {
   const navigate = useNavigate();
+  const [, setProgress] = useAtom(progressBarAtom);
+
   const [image, setImage] = useState<File | null>(null);
   const [createObjectURL, setCreateObjectURL] = useState<string | null>(null);
+
+  useEffect(() => {
+    setProgress(25);
+  }, []);
 
   const uploadToClient = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -30,7 +38,7 @@ const UploadProfilePage = () => {
   };
 
   return (
-    <div className="flex w-full py-20 flex-col h-full shadow-lg  items-center gap-12">
+    <div className="flex flex-col items-center w-full h-full gap-12 py-20 shadow-lg">
       <span className="sm:text-[24px] font-semibold text-center">
         당신의 프로필 사진을 <br />
         업로드해주세요.
@@ -42,7 +50,7 @@ const UploadProfilePage = () => {
         ) : (
           <label
             htmlFor="profile"
-            className="flex items-center cursor-pointer justify-center w-full h-56 border-white border-2 border-dashed"
+            className="flex items-center justify-center w-full h-56 border-2 border-white border-dashed cursor-pointer"
           >
             <input
               type="file"

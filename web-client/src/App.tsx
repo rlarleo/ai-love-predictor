@@ -5,6 +5,7 @@ import UploadProfilePage from '@pages/upload-profile/UploadProfilePage';
 import ChattingPage from '@pages/chatting/ChattingPage';
 import ResultPage from '@pages/result/ResultPage';
 import MainPage from '@pages/main/MainPage';
+import ProgressBarContainer from '@components/layout/ProgressBarContainer';
 
 const App = () => {
   return (
@@ -13,9 +14,11 @@ const App = () => {
         <Routes>
           <Route element={<Container />}>
             <Route path="/" element={<MainPage />} />
-            <Route path="/select-gender" element={<SelectGenderPage />} />
-            <Route path="/upload-profile" element={<UploadProfilePage />} />
-            <Route path="/chatting" element={<ChattingPage />} />
+            <Route element={<ProgressBarContainer />}>
+              <Route path="/select-gender" element={<SelectGenderPage />} />
+              <Route path="/upload-profile" element={<UploadProfilePage />} />
+              <Route path="/chatting" element={<ChattingPage />} />
+            </Route>
             <Route path="/result" element={<ResultPage />} />
           </Route>
         </Routes>

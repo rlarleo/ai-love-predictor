@@ -10,7 +10,7 @@ module.exports = {
         'PyeongChang-Bold': 'PyeongChang-Bold',
       },
       colors: {
-        pink: { regular: '#FF6477' },
+        pink: { regular: '#FF6477', light: '#FF888F', lighter: '#FFD9DB' },
         green: { regular: '#089A83' },
         yellow: { regular: '#FEF01B' },
         gray: {
