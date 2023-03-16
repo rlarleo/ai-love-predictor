@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn import tree, preprocessing
 from sklearn.metrics import accuracy_score
-import graphviz
 
 train_df = pd.read_csv('./api-server/factory/train_list.csv')
 test_df = pd.read_csv('./api-server/factory/test_list.csv')
